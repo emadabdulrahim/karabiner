@@ -3,7 +3,102 @@ import { KarabinerRules } from "./types";
 import { createHyperSubLayers, app, open, rectangle } from "./utils";
 
 const rules: KarabinerRules[] = [
-  // Define the Hyper key itself
+  {
+    description: "Left ctrl + hjkl to arrow keys Vim",
+    manipulators: [
+      {
+        from: {
+          key_code: "h",
+          modifiers: {
+            mandatory: ["left_control"],
+            optional: ["any"],
+          },
+        },
+        to: [{ key_code: "left_arrow" }],
+        type: "basic",
+      },
+      {
+        from: {
+          key_code: "j",
+          modifiers: {
+            mandatory: ["left_control"],
+            optional: ["any"],
+          },
+        },
+        to: [{ key_code: "down_arrow" }],
+        type: "basic",
+      },
+      {
+        from: {
+          key_code: "k",
+          modifiers: {
+            mandatory: ["left_control"],
+            optional: ["any"],
+          },
+        },
+        to: [{ key_code: "up_arrow" }],
+        type: "basic",
+      },
+      {
+        from: {
+          key_code: "l",
+          modifiers: {
+            mandatory: ["left_control"],
+            optional: ["any"],
+          },
+        },
+        to: [{ key_code: "right_arrow" }],
+        type: "basic",
+      },
+    ],
+  },
+  // switch left option -> cmd, and left cmd to left option
+  {
+    description: "Switch left option -> cmd, and left cmd to left option",
+    manipulators: [
+      {
+        from: {
+          key_code: "left_option",
+          modifiers: {
+            optional: ["any"],
+          },
+        },
+        to: [{ key_code: "left_command" }],
+        type: "basic",
+      },
+      {
+        from: {
+          key_code: "left_command",
+          modifiers: {
+            optional: ["any"],
+          },
+        },
+        to: [{ key_code: "left_option" }],
+        type: "basic",
+      },
+      // remap ESC key to back tick
+      {
+        from: {
+          key_code: "escape",
+          modifiers: {
+            optional: ["any"],
+          },
+        },
+        to: [{ key_code: "grave_accent_and_tilde" }],
+        type: "basic",
+      },
+      {
+        from: {
+          key_code: "right_option",
+          modifiers: {
+            optional: ["any"],
+          },
+        },
+        to: [{ key_code: "right_command" }],
+        type: "basic",
+      },
+    ],
+  },
   {
     description: "Hyper Key (⌃⌥⇧⌘)",
     manipulators: [
@@ -61,42 +156,28 @@ const rules: KarabinerRules[] = [
     ),
     // b = "B"rowse
     b: {
-      t: open("https://twitter.com"),
-      // Quarterly "P"lan
-      p: open("https://qrtr.ly/plan"),
-      y: open("https://news.ycombinator.com"),
-      f: open("https://facebook.com"),
-      r: open("https://reddit.com"),
+      // github
+      s: open("https://go/ship"),
+      p: open("https://github.com/pulls"),
+      r: open("https://github.com/pulls/review-requested"),
     },
     // o = "Open" applications
     o: {
       1: app("1Password"),
-      g: app("Google Chrome"),
+      g: app("GitHub Desktop"),
       c: app("Notion Calendar"),
-      v: app("Visual Studio Code"),
-      d: app("Discord"),
+      v: app("Cursor"),
       s: app("Slack"),
-      e: app("Superhuman"),
-      n: app("Notion"),
-      t: app("Warp"),
-      // Open todo list managed via *H*ypersonic
-      h: open(
-        "notion://www.notion.so/stellatehq/7b33b924746647499d906c55f89d5026"
-      ),
+      n: app("Obsidian"),
+      t: app("iTerm"),
       z: app("zoom.us"),
       // "M"essages
-      m: app("Texts"),
+      m: app("iMessage"),
       f: app("Finder"),
       r: app("Texts"),
       // "i"Message
       i: app("Texts"),
       p: app("Spotify"),
-      a: app("iA Presenter"),
-      // "W"hatsApp has been replaced by Texts
-      w: open("Texts"),
-      l: open(
-        "raycast://extensions/stellate/mxstbr-commands/open-mxs-is-shortlink"
-      ),
     },
 
     // w = "Window" via rectangle.app
@@ -254,38 +335,24 @@ const rules: KarabinerRules[] = [
       d: open(`raycast://extensions/yakitrak/do-not-disturb/toggle`),
     },
 
-    // v = "moVe" which isn't "m" because we want it to be on the left hand
-    // so that hjkl work like they do in vim
-    v: {
-      h: {
-        to: [{ key_code: "left_arrow" }],
-      },
-      j: {
-        to: [{ key_code: "down_arrow" }],
-      },
-      k: {
-        to: [{ key_code: "up_arrow" }],
-      },
-      l: {
-        to: [{ key_code: "right_arrow" }],
-      },
-      // Magicmove via homerow.app
-      m: {
-        to: [{ key_code: "f", modifiers: ["right_control"] }],
-      },
-      // Scroll mode via homerow.app
-      s: {
-        to: [{ key_code: "j", modifiers: ["right_control"] }],
-      },
-      d: {
-        to: [{ key_code: "d", modifiers: ["right_shift", "right_command"] }],
-      },
-      u: {
-        to: [{ key_code: "page_down" }],
-      },
-      i: {
-        to: [{ key_code: "page_up" }],
-      },
+    // Move
+    h: {
+      to: [{ key_code: "left_arrow" }],
+    },
+    j: {
+      to: [{ key_code: "down_arrow" }],
+    },
+    k: {
+      to: [{ key_code: "up_arrow" }],
+    },
+    l: {
+      to: [{ key_code: "right_arrow" }],
+    },
+    u: {
+      to: [{ key_code: "page_down" }],
+    },
+    i: {
+      to: [{ key_code: "page_up" }],
     },
 
     // c = Musi*c* which isn't "m" because we want it to be on the left hand
@@ -299,11 +366,16 @@ const rules: KarabinerRules[] = [
       b: {
         to: [{ key_code: "rewind" }],
       },
+      h: {
+        to: [{ key_code: "home" }],
+      },
     },
 
     // r = "Raycast"
     r: {
       n: open("raycast://script-commands/dismiss-notifications"),
+      h: open("raycast://extensions/raycast/system/toggle-hidden-files"),
+      z: open("raycast://script-commands/sample-color"),
       l: open(
         "raycast://extensions/stellate/mxstbr-commands/create-mxs-is-shortlink"
       ),
@@ -314,9 +386,6 @@ const rules: KarabinerRules[] = [
       p: open("raycast://extensions/raycast/raycast/confetti"),
       a: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
       s: open("raycast://extensions/peduarte/silent-mention/index"),
-      h: open(
-        "raycast://extensions/raycast/clipboard-history/clipboard-history"
-      ),
       1: open(
         "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1"
       ),
