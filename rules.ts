@@ -97,6 +97,16 @@ const rules: KarabinerRules[] = [
         to: [{ key_code: "right_command" }],
         type: "basic",
       },
+      {
+        from: {
+          key_code: "right_control",
+          modifiers: {
+            optional: ["any"],
+          },
+        },
+        to: [{ key_code: "fn" }],
+        type: "basic",
+      },
     ],
   },
   {
@@ -172,7 +182,7 @@ const rules: KarabinerRules[] = [
       t: app("iTerm"),
       z: app("zoom.us"),
       // "M"essages
-      m: app("iMessage"),
+      m: app("Messages"),
       f: app("Finder"),
       r: app("Texts"),
       // "i"Message
@@ -271,17 +281,18 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
+      // display brightness control don't seem to work
       i: {
         to: [
           {
-            key_code: "display_brightness_increment",
+            key_code: "pause",
           },
         ],
       },
       k: {
         to: [
           {
-            key_code: "display_brightness_decrement",
+            key_code: "scroll_lock",
           },
         ],
       },
