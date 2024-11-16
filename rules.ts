@@ -1,6 +1,6 @@
 import fs from "fs";
 import { KarabinerRules } from "./types";
-import { createHyperSubLayers, app, open, rectangle } from "./utils";
+import { createHyperSubLayers, app, open, rectangle, shell } from "./utils";
 
 const modeDesignKeyboardCondition = {
   "type": "device_if",
@@ -148,11 +148,25 @@ const rules: KarabinerRules[] = [
       // "M"essages
       m: app("Messages"),
       f: app("Finder"),
-      r: app("Texts"),
       // "i"Message
       i: app("Texts"),
       p: app("Spotify"),
     },
+
+    // TODO: This doesn't quite work yet.
+    // l = "Layouts" via Raycast's custom window management
+    // l: {
+    //   // Coding layout
+    //   c: shell`
+    //     open -a "Visual Studio Code.app"
+    //     sleep 0.2
+    //     open -g "raycast://customWindowManagementCommand?position=topLeft&relativeWidth=0.5"
+
+    //     open -a "Terminal.app"
+    //     sleep 0.2
+    //     open -g "raycast://customWindowManagementCommand?position=topRight&relativeWidth=0.5"
+    //   `,
+    // },
 
     // w = "Window" via rectangle.app
     w: {
@@ -218,15 +232,6 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      d: {
-        description: "Window: Next display",
-        to: [
-          {
-            key_code: "right_arrow",
-            modifiers: ["right_control", "right_option", "right_command"],
-          },
-        ],
-      },
     },
 
     // s = "System"
@@ -282,32 +287,25 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      e: {
-        to: [
-          {
-            // Emoji picker
-            key_code: "spacebar",
-            modifiers: ["right_control", "right_command"],
-          },
-        ],
-      },
-      // Turn on Elgato KeyLight
-      y: {
-        to: [
-          {
-            shell_command: `curl -H 'Content-Type: application/json' --request PUT --data '{ "numberOfLights": 1, "lights": [ { "on": 1, "brightness": 100, "temperature": 215 } ] }' http://192.168.8.84:9123/elgato/lights`,
-          },
-        ],
-      },
-      h: {
-        to: [
-          {
-            shell_command: `curl -H 'Content-Type: application/json' --request PUT --data '{ "numberOfLights": 1, "lights": [ { "on": 0, "brightness": 100, "temperature": 215 } ] }' http://192.168.8.84:9123/elgato/lights`,
-          },
-        ],
-      },
+      e: open(
+        `raycast://extensions/thomas/elgato-key-light/toggle?launchType=background`
+      ),
       // "D"o not disturb toggle
-      d: open(`raycast://extensions/yakitrak/do-not-disturb/toggle`),
+      d: open(
+        `raycast://extensions/yakitrak/do-not-disturb/toggle?launchType=background`
+      ),
+      // "T"heme
+      t: open(`raycast://extensions/raycast/system/toggle-system-appearance`),
+      c: open("raycast://extensions/raycast/system/open-camera"),
+      // 'v'oice
+      v: {
+        to: [
+          {
+            key_code: "spacebar",
+            modifiers: ["left_option"],
+          },
+        ],
+      },
     },
 
     // Move
@@ -348,6 +346,7 @@ const rules: KarabinerRules[] = [
 
     // r = "Raycast"
     r: {
+      c: open("raycast://extensions/thomas/color-picker/pick-color"),
       n: open("raycast://script-commands/dismiss-notifications"),
       h: open("raycast://extensions/raycast/system/toggle-hidden-files"),
       z: open("raycast://script-commands/sample-color"),
@@ -357,7 +356,6 @@ const rules: KarabinerRules[] = [
       e: open(
         "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols"
       ),
-      c: open("raycast://extensions/raycast/system/open-camera"),
       p: open("raycast://extensions/raycast/raycast/confetti"),
       a: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
       s: open("raycast://extensions/peduarte/silent-mention/index"),
@@ -369,6 +367,30 @@ const rules: KarabinerRules[] = [
       ),
     },
   }),
+  {
+    description: "Change Backspace to Spacebar when Minecraft is focused",
+    manipulators: [
+      {
+        type: "basic",
+        from: {
+          key_code: "delete_or_backspace",
+        },
+        to: [
+          {
+            key_code: "spacebar",
+          },
+        ],
+        conditions: [
+          {
+            type: "frontmost_application_if",
+            file_paths: [
+              "^/Users/mxstbr/Library/Application Support/minecraft/runtime/java-runtime-gamma/mac-os-arm64/java-runtime-gamma/jre.bundle/Contents/Home/bin/java$",
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 fs.writeFileSync(
