@@ -145,11 +145,8 @@ const rules: KarabinerRules[] = [
       n: app("Obsidian"),
       t: app("iTerm"),
       z: app("zoom.us"),
-      // "M"essages
       m: app("Messages"),
       f: app("Finder"),
-      // "i"Message
-      i: app("Texts"),
       p: app("Spotify"),
     },
 
@@ -338,9 +335,6 @@ const rules: KarabinerRules[] = [
       },
       b: {
         to: [{ key_code: "rewind" }],
-      },
-      h: {
-        to: [{ key_code: "home" }],
       },
     },
 
