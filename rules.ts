@@ -2,56 +2,15 @@ import fs from "fs";
 import { KarabinerRules } from "./types";
 import { createHyperSubLayers, app, open, rectangle } from "./utils";
 
+const modeDesignKeyboardCondition = {
+  "type": "device_if",
+  "identifiers": 
+    {
+      "vendor_id": 222
+    },
+} as const;
+
 const rules: KarabinerRules[] = [
-  {
-    description: "Left ctrl + hjkl to arrow keys Vim",
-    manipulators: [
-      {
-        from: {
-          key_code: "h",
-          modifiers: {
-            mandatory: ["left_control"],
-            optional: ["any"],
-          },
-        },
-        to: [{ key_code: "left_arrow" }],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "j",
-          modifiers: {
-            mandatory: ["left_control"],
-            optional: ["any"],
-          },
-        },
-        to: [{ key_code: "down_arrow" }],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "k",
-          modifiers: {
-            mandatory: ["left_control"],
-            optional: ["any"],
-          },
-        },
-        to: [{ key_code: "up_arrow" }],
-        type: "basic",
-      },
-      {
-        from: {
-          key_code: "l",
-          modifiers: {
-            mandatory: ["left_control"],
-            optional: ["any"],
-          },
-        },
-        to: [{ key_code: "right_arrow" }],
-        type: "basic",
-      },
-    ],
-  },
   // switch left option -> cmd, and left cmd to left option
   {
     description: "Switch left option -> cmd, and left cmd to left option",
@@ -65,6 +24,7 @@ const rules: KarabinerRules[] = [
         },
         to: [{ key_code: "left_command" }],
         type: "basic",
+        conditions: [modeDesignKeyboardCondition],
       },
       {
         from: {
@@ -75,6 +35,7 @@ const rules: KarabinerRules[] = [
         },
         to: [{ key_code: "left_option" }],
         type: "basic",
+        conditions: [modeDesignKeyboardCondition],
       },
       // remap ESC key to back tick
       {
@@ -86,6 +47,7 @@ const rules: KarabinerRules[] = [
         },
         to: [{ key_code: "grave_accent_and_tilde" }],
         type: "basic",
+        conditions: [modeDesignKeyboardCondition],
       },
       {
         from: {
@@ -96,17 +58,19 @@ const rules: KarabinerRules[] = [
         },
         to: [{ key_code: "right_command" }],
         type: "basic",
+        conditions: [modeDesignKeyboardCondition],
       },
-      {
-        from: {
-          key_code: "right_control",
-          modifiers: {
-            optional: ["any"],
-          },
-        },
-        to: [{ key_code: "fn" }],
-        type: "basic",
-      },
+      // {
+      //   from: {
+      //     key_code: "right_control",
+      //     modifiers: {
+      //       optional: ["any"],
+      //     },
+      //   },
+      //   to: [{ key_code: "fn" }],
+      //   type: "basic",
+      //   conditions: [modeDesignKeyboardCondition],
+      // },
     ],
   },
   {
@@ -285,14 +249,14 @@ const rules: KarabinerRules[] = [
       i: {
         to: [
           {
-            key_code: "pause",
+            key_code: "display_brightness_increment",
           },
         ],
       },
       k: {
         to: [
           {
-            key_code: "scroll_lock",
+            key_code: "display_brightness_decrement",
           },
         ],
       },
