@@ -18,7 +18,7 @@ export interface Parameters {
   "basic.simultaneous_threshold_milliseconds"?: number;
 }
 
-type Conditions =
+export type Conditions =
   | FrontMostApplicationCondition
   | DeviceCondition
   | KeybaordTypeCondition
@@ -39,7 +39,7 @@ type DeviceCondition = {
     | "device_unless"
     | "device_exists_if"
     | "device_exists_unless";
-  identifiers: Identifiers;
+  identifiers: Identifiers[];
   description?: string;
 };
 

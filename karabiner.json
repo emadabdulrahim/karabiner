@@ -28,9 +28,11 @@
                 "conditions": [
                   {
                     "type": "device_if",
-                    "identifiers": {
-                      "vendor_id": 222
-                    }
+                    "identifiers": [
+                      {
+                        "vendor_id": 222
+                      }
+                    ]
                   }
                 ]
               },
@@ -52,9 +54,11 @@
                 "conditions": [
                   {
                     "type": "device_if",
-                    "identifiers": {
-                      "vendor_id": 222
-                    }
+                    "identifiers": [
+                      {
+                        "vendor_id": 222
+                      }
+                    ]
                   }
                 ]
               },
@@ -76,9 +80,11 @@
                 "conditions": [
                   {
                     "type": "device_if",
-                    "identifiers": {
-                      "vendor_id": 222
-                    }
+                    "identifiers": [
+                      {
+                        "vendor_id": 222
+                      }
+                    ]
                   }
                 ]
               },
@@ -100,9 +106,11 @@
                 "conditions": [
                   {
                     "type": "device_if",
-                    "identifiers": {
-                      "vendor_id": 222
-                    }
+                    "identifiers": [
+                      {
+                        "vendor_id": 222
+                      }
+                    ]
                   }
                 ]
               }

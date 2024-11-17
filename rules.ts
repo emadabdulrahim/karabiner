@@ -1,14 +1,8 @@
 import fs from "fs";
-import { KarabinerRules } from "./types";
+import { Conditions, KarabinerRules } from "./types";
 import { createHyperSubLayers, app, open, rectangle, shell } from "./utils";
 
-const modeDesignKeyboardCondition = {
-  "type": "device_if",
-  "identifiers": 
-    {
-      "vendor_id": 222
-    },
-} as const;
+const modeDesignKeyboardCondition: Conditions = { type: "device_if", identifiers: [{ vendor_id: 222 }] };
 
 const rules: KarabinerRules[] = [
   // switch left option -> cmd, and left cmd to left option
