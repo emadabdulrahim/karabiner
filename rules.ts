@@ -262,6 +262,20 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
+      y: {
+        to: [
+          {
+            key_code: "pause",
+          },
+        ],
+      },
+      h: {
+        to: [
+          {
+            key_code: "scroll_lock",
+          },
+        ],
+      },
       l: {
         to: [
           {
@@ -340,18 +354,15 @@ const rules: KarabinerRules[] = [
 
     // r = "Raycast"
     r: {
-      c: open("raycast://extensions/thomas/color-picker/pick-color"),
+      l: open("raycast://extensions/thomas/color-picker/pick-color"),
+      c: open("raycast://extensions/raycast/system/open-camera"),
       n: open("raycast://script-commands/dismiss-notifications"),
       h: open("raycast://extensions/raycast/system/toggle-hidden-files"),
-      z: open("raycast://script-commands/sample-color"),
-      l: open(
-        "raycast://extensions/stellate/mxstbr-commands/create-mxs-is-shortlink"
-      ),
       e: open(
         "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols"
       ),
       p: open("raycast://extensions/raycast/raycast/confetti"),
-      a: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
+      i: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
       s: open("raycast://extensions/peduarte/silent-mention/index"),
       1: open(
         "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1"
