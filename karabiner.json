@@ -523,12 +523,12 @@
                                         "value": 1
                                     }
                                 ],
-                                "description": "Open -a 'iTerm.app'",
+                                "description": "Open -a 'Warp.app'",
                                 "from": {
                                     "key_code": "t",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'iTerm.app'" }],
+                                "to": [{ "shell_command": "open -a 'Warp.app'" }],
                                 "type": "basic"
                             },
                             {
