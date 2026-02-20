@@ -132,12 +132,13 @@ const rules: KarabinerRules[] = [
     // o = "Open" applications
     o: {
       1: app("1Password"),
+      a: app("Notion Calendar"), // "a"genda
       g: app("GitHub Desktop"),
-      c: app("Notion Calendar"),
+      c: app("Claude"),
       v: app("Cursor"),
       s: app("Slack"),
-      n: app("Craft Agents"),
-      t: app("Warp"),
+      n: app("Obsidian"),
+      t: app("Ghostty"),
       z: app("zoom.us"),
       m: app("Messages"),
       f: app("Finder"),
