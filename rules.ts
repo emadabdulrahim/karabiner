@@ -134,7 +134,9 @@ const rules: KarabinerRules[] = [
       1: app("1Password"),
       a: app("Notion Calendar"), // "a"genda
       g: app("GitHub Desktop"),
-      c: app("Claude"),
+      c: app("Codex"),
+      r: app("Cursor"),
+      l: app("Linear"),
       v: app("Cursor"),
       s: app("Slack"),
       n: app("Obsidian"),
@@ -379,6 +381,7 @@ fs.writeFileSync(
       profiles: [
         {
           name: "Default",
+          selected: true,
           complex_modifications: {
             rules,
           },
