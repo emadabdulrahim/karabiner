@@ -139,7 +139,7 @@ const rules: KarabinerRules[] = [
       l: app("Linear"),
       v: app("Cursor"),
       s: app("Slack"),
-      n: app("Obsidian"),
+      n: app("Notion"),
       t: app("Ghostty"),
       z: app("zoom.us"),
       m: app("Messages"),
