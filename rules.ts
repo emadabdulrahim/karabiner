@@ -134,7 +134,8 @@ const rules: KarabinerRules[] = [
       1: app("1Password"),
       a: app("Notion Calendar"), // "a"genda
       g: app("GitHub Desktop"),
-      c: app("Codex"),
+      c: app("ChatGPT"),
+      d: app("Figma"),
       r: app("Cursor"),
       l: app("Linear"),
       v: app("Cursor"),
