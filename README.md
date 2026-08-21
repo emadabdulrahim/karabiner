@@ -1,49 +1,106 @@
-# @mxstbr's Karabiner Elements configuration
+# Karabiner configuration
 
-If you like TypeScript and want your Karabiner configuration maintainable & type-safe, you probably want to use the custom configuration DSL / generator I created in `rules.ts` and `utils.ts`!
+A personal [Karabiner-Elements](https://karabiner-elements.pqrs.org/) setup built
+around one idea: hold Caps Lock to enter a Hyper layer, then use short,
+mnemonic key sequences.
 
-> “This repo is incredible - thanks so much for putting it together! I always avoided Karabiner mostly because of its complicated configuration. **Your project makes it so much easier to work with and so much more powerful. I'm geeking out on how much faster I'm going to be now.**”
->
-> — @jhanstra ([source](https://github.com/mxstbr/karabiner/pull/4))
+The editable source is [`rules.ts`](./rules.ts). The generated
+`karabiner.json` is kept in the repository because Karabiner reads it
+directly, but the build preserves profile, device, and UI settings managed by
+Karabiner itself.
 
-Watch the video about this repo:
+## Everyday changes
 
-[<img width="772" alt="CleanShot 2024-04-17 at 17 47 16@2x" src="https://github.com/mxstbr/karabiner/assets/7525670/c8565c48-10ad-4479-b690-ddc35d1ca8ce">](https://www.youtube.com/watch?v=j4b_uQX3Vu0)
+Add or change an application in the `o` (Open) layer:
 
-Watch my interview with Raycast for a deeper dive into how I connect this with Raycast as my personal productivity system:
-
-[![](https://github.com/mxstbr/karabiner/assets/7525670/f974cee3-ac92-4f80-8bf7-9efdf81f78b5)](https://www.youtube.com/watch?v=m5MDv9qwhU8)
-
-You probably don't want to use my exact configuration, as it's optimized for my personal style & usage. Best way to go about using this if you want to? Probably delete all the sublayers in `rules.ts` and add your own based on your own needs!
-
-## Installation
-
-1. Install & start [Karabiner Elements](https://karabiner-elements.pqrs.org/)
-1. Clone this repository
-1. Delete the default `~/.config/karabiner` folder
-1. Create a symlink with `ln -s ~/github/mxstbr/karabiner ~/.config` (where `~/github/mxstbr/karabiner` is your local path to where you cloned the repository)
-1. [Restart karabiner_console_user_server](https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/) with `` launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_server ``
-
-## Development
-
-```
-yarn install
+```ts
+o: apps({
+  c: "ChatGPT",
+  d: "Figma",
+  v: "Visual Studio Code",
+}),
 ```
 
-to install the dependencies. (one-time only)
+Add a regular key action:
 
-```
-yarn run build
-```
-
-builds the `karabiner.json` from the `rules.ts`.
-
-```
-yarn run watch
+```ts
+h: key("left_arrow"),
 ```
 
-watches the TypeScript files and rebuilds whenever they change.
+Add a URL or Raycast command:
 
-## License
+```ts
+p: open("https://github.com/pulls"),
+```
 
-Copyright (c) 2022 Maximilian Stoiber, licensed under the [MIT license](./LICENSE.md).
+Then regenerate and verify:
+
+```sh
+pnpm build
+pnpm check
+```
+
+`pnpm dev` watches the imported TypeScript files and rebuilds after edits.
+`pnpm check:dependencies` reports apps and third-party Raycast extensions
+referenced by the keymap but missing from the current Mac.
+
+## Keymap shape
+
+Caps Lock by itself remains Escape.
+
+| Keys            | Purpose                   |
+| --------------- | ------------------------- |
+| Hyper + O + key | Open applications         |
+| Hyper + W + key | Raycast window management |
+| Hyper + S + key | System controls           |
+| Hyper + R + key | Raycast commands          |
+| Hyper + B + key | Browser destinations      |
+| Hyper + C + key | Music controls            |
+| Hyper + H/J/K/L | Arrow movement            |
+| Hyper + U/I     | Page down/up              |
+
+The Mode Designs keyboard rule swaps Command and Option and remaps Escape only
+for devices with vendor ID `222`.
+
+## Setup
+
+Requirements:
+
+- Karabiner-Elements
+- Node.js 22.13 or newer
+- pnpm 11
+- Raycast for window-management and Raycast-specific bindings
+
+```sh
+git clone https://github.com/emadabdulrahim/karabiner.git
+cd karabiner
+pnpm install
+pnpm build
+```
+
+Karabiner expects its config at `~/.config/karabiner`. Back up any existing
+directory, then symlink this checkout:
+
+```sh
+mkdir -p ~/.config
+ln -s "$PWD" ~/.config/karabiner
+launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_server
+```
+
+## Repository map
+
+- `rules.ts` — the keymap; most changes belong here
+- `utils.ts` — the small Hyper/app/key/window authoring interface
+- `config.ts` — preserves Karabiner-owned settings while replacing authored rules
+- `scripts/` — build, verification, and dependency diagnostics
+- `types.ts` — the compact local Karabiner types used by this configuration
+- `AGENTS.md` — minimal instructions for coding agents
+
+Do not hand-edit generated rules in `karabiner.json`. If it is stale, run
+`pnpm build`. Automatic Karabiner backups are intentionally ignored.
+
+## Provenance
+
+Forked from [mxstbr/karabiner](https://github.com/mxstbr/karabiner), whose
+TypeScript Hyper-layer generator inspired this setup. Licensed under the
+[MIT License](./LICENSE.md).
