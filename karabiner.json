@@ -1592,8 +1592,8 @@
                                 ]
                             },
                             {
-                                "description": "Open raycast://extensions/raycast/system/open-camera",
-                                "to": [{ "shell_command": "open raycast://extensions/raycast/system/open-camera" }],
+                                "description": "Open raycast://extensions/raycast/raycast/open-camera",
+                                "to": [{ "shell_command": "open raycast://extensions/raycast/raycast/open-camera" }],
                                 "type": "basic",
                                 "from": {
                                     "key_code": "c",
@@ -2479,38 +2479,6 @@
                                 ]
                             },
                             {
-                                "description": "Open raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1",
-                                "to": [{ "shell_command": "open raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1" }],
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "1",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "hyper_sublayer_r",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "description": "Open raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2",
-                                "to": [{ "shell_command": "open raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2" }],
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "2",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "hyper_sublayer_r",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
                                 "description": "Open raycast://extensions/thomas/color-picker/pick-color",
                                 "to": [{ "shell_command": "open raycast://extensions/thomas/color-picker/pick-color" }],
                                 "type": "basic",
@@ -2527,59 +2495,11 @@
                                 ]
                             },
                             {
-                                "description": "Open raycast://extensions/raycast/system/open-camera",
-                                "to": [{ "shell_command": "open raycast://extensions/raycast/system/open-camera" }],
+                                "description": "Open raycast://extensions/raycast/raycast/open-camera",
+                                "to": [{ "shell_command": "open raycast://extensions/raycast/raycast/open-camera" }],
                                 "type": "basic",
                                 "from": {
                                     "key_code": "c",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "hyper_sublayer_r",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "description": "Open raycast://script-commands/dismiss-notifications",
-                                "to": [{ "shell_command": "open raycast://script-commands/dismiss-notifications" }],
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "n",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "hyper_sublayer_r",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "description": "Open raycast://extensions/raycast/system/toggle-hidden-files",
-                                "to": [{ "shell_command": "open raycast://extensions/raycast/system/toggle-hidden-files" }],
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "hyper_sublayer_r",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "description": "Open raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
-                                "to": [{ "shell_command": "open raycast://extensions/raycast/emoji-symbols/search-emoji-symbols" }],
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "e",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "conditions": [
@@ -2607,27 +2527,11 @@
                                 ]
                             },
                             {
-                                "description": "Open raycast://extensions/raycast/raycast-ai/ai-chat",
-                                "to": [{ "shell_command": "open raycast://extensions/raycast/raycast-ai/ai-chat" }],
+                                "description": "Open raycast-x://extensions/raycast/ai/ai-chat",
+                                "to": [{ "shell_command": "open raycast-x://extensions/raycast/ai/ai-chat" }],
                                 "type": "basic",
                                 "from": {
                                     "key_code": "i",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "hyper_sublayer_r",
-                                        "value": 1
-                                    }
-                                ]
-                            },
-                            {
-                                "description": "Open raycast://extensions/peduarte/silent-mention/index",
-                                "to": [{ "shell_command": "open raycast://extensions/peduarte/silent-mention/index" }],
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "s",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "conditions": [

@@ -126,7 +126,7 @@ export const rules: KarabinerRule[] = [
         "raycast://extensions/yakitrak/do-not-disturb/toggle?launchType=background",
       ),
       t: open("raycast://extensions/raycast/system/toggle-system-appearance"),
-      c: open("raycast://extensions/raycast/system/open-camera"),
+      c: open("raycast://extensions/raycast/raycast/open-camera"),
       v: key("spacebar", ["left_option"]),
     }),
 
@@ -148,21 +148,9 @@ export const rules: KarabinerRule[] = [
     // Raycast
     r: layer("Raycast", {
       l: open("raycast://extensions/thomas/color-picker/pick-color"),
-      c: open("raycast://extensions/raycast/system/open-camera"),
-      n: open("raycast://script-commands/dismiss-notifications"),
-      h: open("raycast://extensions/raycast/system/toggle-hidden-files"),
-      e: open(
-        "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
-      ),
+      c: open("raycast://extensions/raycast/raycast/open-camera"),
       p: open("raycast://extensions/raycast/raycast/confetti"),
-      i: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
-      s: open("raycast://extensions/peduarte/silent-mention/index"),
-      "1": open(
-        "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1",
-      ),
-      "2": open(
-        "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2",
-      ),
+      i: open("raycast-x://extensions/raycast/ai/ai-chat"),
     }),
   }),
 ];

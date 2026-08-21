@@ -7,7 +7,7 @@ test("the complete keymap keeps its structural invariants", () => {
   assert.equal(rules.length, 17);
   assert.equal(
     rules.reduce((count, rule) => count + rule.manipulators.length, 0),
-    78,
+    72,
   );
   assert.ok(
     rules.every((rule) =>
@@ -97,4 +97,38 @@ test("inputSource selects one exact language", () => {
 
   const generated = hyper({ a: inputSource("ar", "Arabic") });
   assert.equal("hint" in (generated[1]?.manipulators[0] ?? {}), false);
+});
+
+test("Raycast layer exposes only supported commands", () => {
+  const raycastLayer = rules.find(
+    (rule) => rule.description === 'Hyper Key sublayer "r"',
+  );
+  const commands = Object.fromEntries(
+    (raycastLayer?.manipulators.slice(1) ?? []).map((manipulator) => [
+      manipulator.from.key_code,
+      manipulator.to?.[0]?.shell_command,
+    ]),
+  );
+
+  assert.deepEqual(commands, {
+    l: "open raycast://extensions/thomas/color-picker/pick-color",
+    c: "open raycast://extensions/raycast/raycast/open-camera",
+    p: "open raycast://extensions/raycast/raycast/confetti",
+    i: "open raycast-x://extensions/raycast/ai/ai-chat",
+  });
+});
+
+test("all camera actions use the current deeplink", () => {
+  const cameraCommands = rules.flatMap((rule) =>
+    rule.manipulators.flatMap((manipulator) =>
+      (manipulator.to ?? [])
+        .map((event) => event.shell_command)
+        .filter((command) => command?.includes("open-camera")),
+    ),
+  );
+
+  assert.deepEqual(cameraCommands, [
+    "open raycast://extensions/raycast/raycast/open-camera",
+    "open raycast://extensions/raycast/raycast/open-camera",
+  ]);
 });
