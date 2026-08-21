@@ -135,7 +135,17 @@ export interface FromEvent {
 export interface ToEvent {
   key_code?: KeyCode;
   modifiers?: Modifier[];
+  conditions?: Condition[];
   shell_command?: string;
+  select_input_source?: {
+    language?: string;
+    input_source_id?: string;
+    input_mode_id?: string;
+  };
+  set_notification_message?: {
+    id: string;
+    text: string;
+  };
   set_variable?: {
     name: string;
     value: boolean | number | string;
@@ -150,6 +160,10 @@ export interface Manipulator {
   to?: ToEvent[];
   to_after_key_up?: ToEvent[];
   to_if_alone?: ToEvent[];
+  to_delayed_action?: {
+    to_if_invoked?: ToEvent[];
+    to_if_canceled?: ToEvent[];
+  };
   conditions?: Condition[];
   parameters?: Record<string, number>;
 }

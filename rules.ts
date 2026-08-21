@@ -1,5 +1,5 @@
 import type { Condition, KarabinerRule } from "./types.js";
-import { apps, hyper, key, open, window } from "./utils.js";
+import { apps, hyper, inputSource, key, layer, open, window } from "./utils.js";
 
 const modeDesignKeyboard: Condition = {
   type: "device_if",
@@ -55,33 +55,40 @@ export const rules: KarabinerRule[] = [
     ),
 
     // Browse
-    b: {
+    b: layer("Browse", {
       s: open("https://go/ship"),
       p: open("https://github.com/pulls"),
       r: open("https://github.com/pulls/review-requested"),
-    },
-
-    // Open applications
-    o: apps({
-      "1": "1Password",
-      a: "Notion Calendar",
-      g: "GitHub Desktop",
-      c: "ChatGPT",
-      d: "Figma",
-      r: "Cursor",
-      l: "Linear",
-      v: "Visual Studio Code",
-      s: "Slack",
-      n: "Notion",
-      t: "Ghostty",
-      z: "zoom.us",
-      m: "Messages",
-      f: "Finder",
-      p: "Spotify",
     }),
 
+    // Open applications
+    o: layer(
+      "Open",
+      apps({
+        "1": "1Password",
+        a: "Notion Calendar",
+        g: "GitHub Desktop",
+        c: "ChatGPT",
+        d: "Figma",
+        r: "Cursor",
+        l: "Linear",
+        v: "Visual Studio Code",
+        s: "Slack",
+        n: "Notion",
+        t: "Ghostty",
+        z: "zoom.us",
+        m: "Messages",
+        f: "Finder",
+        p: "Spotify",
+      }),
+    ),
+
+    // Input sources
+    e: inputSource("en", "English"),
+    a: inputSource("ar", "Arabic"),
+
     // Window management
-    w: {
+    w: layer("Window", {
       semicolon: key("h", ["right_command"], "Window: Hide"),
       y: window("previous-display"),
       o: window("next-display"),
@@ -99,10 +106,10 @@ export const rules: KarabinerRule[] = [
       ),
       b: key("open_bracket", ["right_command"], "Window: Back"),
       m: key("close_bracket", ["right_command"], "Window: Forward"),
-    },
+    }),
 
     // System
-    s: {
+    s: layer("System", {
       u: key("volume_increment"),
       j: key("volume_decrement"),
       i: key("display_brightness_increment"),
@@ -121,7 +128,7 @@ export const rules: KarabinerRule[] = [
       t: open("raycast://extensions/raycast/system/toggle-system-appearance"),
       c: open("raycast://extensions/raycast/system/open-camera"),
       v: key("spacebar", ["left_option"]),
-    },
+    }),
 
     // Movement
     h: key("left_arrow"),
@@ -132,14 +139,14 @@ export const rules: KarabinerRule[] = [
     i: key("page_up"),
 
     // Music
-    c: {
+    c: layer("Music", {
       p: key("play_or_pause"),
       n: key("fastforward"),
       b: key("rewind"),
-    },
+    }),
 
     // Raycast
-    r: {
+    r: layer("Raycast", {
       l: open("raycast://extensions/thomas/color-picker/pick-color"),
       c: open("raycast://extensions/raycast/system/open-camera"),
       n: open("raycast://script-commands/dismiss-notifications"),
@@ -156,6 +163,6 @@ export const rules: KarabinerRule[] = [
       "2": open(
         "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2",
       ),
-    },
+    }),
   }),
 ];

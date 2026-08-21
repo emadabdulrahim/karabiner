@@ -14,11 +14,14 @@ Karabiner itself.
 Add or change an application in the `o` (Open) layer:
 
 ```ts
-o: apps({
-  c: "ChatGPT",
-  d: "Figma",
-  v: "Visual Studio Code",
-}),
+o: layer(
+  "Open",
+  apps({
+    c: "ChatGPT",
+    d: "Figma",
+    v: "Visual Studio Code",
+  }),
+),
 ```
 
 Add a regular key action:
@@ -32,6 +35,16 @@ Add a URL or Raycast command:
 ```ts
 p: open("https://github.com/pulls"),
 ```
+
+Add an input source:
+
+```ts
+e: inputSource("en", "English"),
+a: inputSource("ar", "Arabic"),
+```
+
+These are direct shortcuts: hold Caps Lock and press `E` for English or `A`
+for Arabic.
 
 Then regenerate and verify:
 
@@ -47,10 +60,15 @@ referenced by the keymap but missing from the current Mac.
 ## Keymap shape
 
 Caps Lock by itself remains Escape.
+Named layers display a small HUD while their layer key is held.
+Hold Caps Lock by itself for 900 ms to display a cheat sheet of every named
+layer and direct language shortcut.
 
 | Keys            | Purpose                   |
 | --------------- | ------------------------- |
 | Hyper + O + key | Open applications         |
+| Hyper + E       | Select English            |
+| Hyper + A       | Select Arabic             |
 | Hyper + W + key | Raycast window management |
 | Hyper + S + key | System controls           |
 | Hyper + R + key | Raycast commands          |
@@ -90,7 +108,7 @@ launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_ser
 ## Repository map
 
 - `rules.ts` — the keymap; most changes belong here
-- `utils.ts` — the small Hyper/app/key/window authoring interface
+- `utils.ts` — the small Hyper/layer/app/key/window authoring interface
 - `config.ts` — preserves Karabiner-owned settings while replacing authored rules
 - `scripts/` — build, verification, and dependency diagnostics
 - `types.ts` — the compact local Karabiner types used by this configuration
