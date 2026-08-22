@@ -60,7 +60,6 @@ referenced by the keymap but missing from the current Mac.
 ## Keymap shape
 
 Caps Lock by itself remains Escape.
-Named layers display a small HUD while their layer key is held.
 Hold Caps Lock by itself for 900 ms to display a cheat sheet of every named
 layer and direct language shortcut.
 

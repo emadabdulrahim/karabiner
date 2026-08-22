@@ -7,7 +7,7 @@ test("the complete keymap keeps its structural invariants", () => {
   assert.equal(rules.length, 17);
   assert.equal(
     rules.reduce((count, rule) => count + rule.manipulators.length, 0),
-    72,
+    73,
   );
   assert.ok(
     rules.every((rule) =>
@@ -56,24 +56,12 @@ test("hyper owns the Caps Lock and sublayer variable protocol", () => {
         value: 1,
       },
     },
-    {
-      set_notification_message: {
-        id: "hyper-layer",
-        text: "HYPER · OPEN",
-      },
-    },
   ]);
   assert.deepEqual(generated[1]?.manipulators[0]?.to_after_key_up, [
     {
       set_variable: {
         name: "hyper_sublayer_o",
         value: 0,
-      },
-    },
-    {
-      set_notification_message: {
-        id: "hyper-layer",
-        text: "",
       },
     },
   ]);

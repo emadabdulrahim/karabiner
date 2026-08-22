@@ -67,6 +67,7 @@ export const rules: KarabinerRule[] = [
       apps({
         "1": "1Password",
         a: "Notion Calendar",
+        b: "Grok Bot",
         g: "GitHub Desktop",
         c: "ChatGPT",
         d: "Figma",

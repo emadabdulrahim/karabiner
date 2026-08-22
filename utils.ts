@@ -49,13 +49,13 @@ export function hyper(
       }
 
       return isNamedSublayer(layer)
-        ? sublayerRule(layerKey, layer.commands, layerVariables, layer.name)
+        ? sublayerRule(layerKey, layer.commands, layerVariables)
         : sublayerRule(layerKey, layer, layerVariables);
     }),
   ];
 }
 
-/** Names a sublayer and shows that name while the layer key is held. */
+/** Names a sublayer so it appears in the long-hold Hyper cheat sheet. */
 export function layer(name: string, commands: Sublayer): NamedSublayer {
   return { name, commands };
 }
@@ -174,11 +174,8 @@ function sublayerRule(
   layerKey: KeyCode,
   commands: Sublayer,
   layerVariables: string[],
-  name?: string,
 ): KarabinerRule {
   const activeVariable = layerVariable(layerKey);
-  const showLayer = name ? [notification(`HYPER · ${name.toUpperCase()}`)] : [];
-  const hideLayer = name ? [notification("")] : [];
 
   return {
     description: `Hyper Key sublayer "${layerKey}"`,
@@ -190,14 +187,8 @@ function sublayerRule(
           key_code: layerKey,
           modifiers: { optional: ["any"] },
         },
-        to: [
-          { set_variable: { name: activeVariable, value: 1 } },
-          ...showLayer,
-        ],
-        to_after_key_up: [
-          { set_variable: { name: activeVariable, value: 0 } },
-          ...hideLayer,
-        ],
+        to: [{ set_variable: { name: activeVariable, value: 1 } }],
+        to_after_key_up: [{ set_variable: { name: activeVariable, value: 0 } }],
         conditions: [
           ...layerVariables
             .filter((name) => name !== activeVariable)

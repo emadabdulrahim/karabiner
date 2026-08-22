@@ -231,12 +231,6 @@
                                             "name": "hyper_sublayer_b",
                                             "value": 1
                                         }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": "HYPER · BROWSE"
-                                        }
                                     }
                                 ],
                                 "to_after_key_up": [
@@ -244,12 +238,6 @@
                                         "set_variable": {
                                             "name": "hyper_sublayer_b",
                                             "value": 0
-                                        }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": ""
                                         }
                                     }
                                 ],
@@ -397,12 +385,6 @@
                                             "name": "hyper_sublayer_o",
                                             "value": 1
                                         }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": "HYPER · OPEN"
-                                        }
                                     }
                                 ],
                                 "to_after_key_up": [
@@ -410,12 +392,6 @@
                                         "set_variable": {
                                             "name": "hyper_sublayer_o",
                                             "value": 0
-                                        }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": ""
                                         }
                                     }
                                 ],
@@ -519,6 +495,22 @@
                                 "type": "basic",
                                 "from": {
                                     "key_code": "a",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "hyper_sublayer_o",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            {
+                                "description": "Open -a 'Grok Bot.app'",
+                                "to": [{ "shell_command": "open -a 'Grok Bot.app'" }],
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "b",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "conditions": [
@@ -947,12 +939,6 @@
                                             "name": "hyper_sublayer_w",
                                             "value": 1
                                         }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": "HYPER · WINDOW"
-                                        }
                                     }
                                 ],
                                 "to_after_key_up": [
@@ -960,12 +946,6 @@
                                         "set_variable": {
                                             "name": "hyper_sublayer_w",
                                             "value": 0
-                                        }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": ""
                                         }
                                     }
                                 ],
@@ -1303,12 +1283,6 @@
                                             "name": "hyper_sublayer_s",
                                             "value": 1
                                         }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": "HYPER · SYSTEM"
-                                        }
                                     }
                                 ],
                                 "to_after_key_up": [
@@ -1316,12 +1290,6 @@
                                         "set_variable": {
                                             "name": "hyper_sublayer_s",
                                             "value": 0
-                                        }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": ""
                                         }
                                     }
                                 ],
@@ -2215,12 +2183,6 @@
                                             "name": "hyper_sublayer_c",
                                             "value": 1
                                         }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": "HYPER · MUSIC"
-                                        }
                                     }
                                 ],
                                 "to_after_key_up": [
@@ -2228,12 +2190,6 @@
                                         "set_variable": {
                                             "name": "hyper_sublayer_c",
                                             "value": 0
-                                        }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": ""
                                         }
                                     }
                                 ],
@@ -2378,12 +2334,6 @@
                                             "name": "hyper_sublayer_r",
                                             "value": 1
                                         }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": "HYPER · RAYCAST"
-                                        }
                                     }
                                 ],
                                 "to_after_key_up": [
@@ -2391,12 +2341,6 @@
                                         "set_variable": {
                                             "name": "hyper_sublayer_r",
                                             "value": 0
-                                        }
-                                    },
-                                    {
-                                        "set_notification_message": {
-                                            "id": "hyper-layer",
-                                            "text": ""
                                         }
                                     }
                                 ],
