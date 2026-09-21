@@ -1,54 +1,7 @@
-import type { Condition, KarabinerRule } from "./types.js";
+import type { KarabinerRule } from "./types.js";
 import { apps, hyper, inputSource, key, layer, open, window } from "./utils.js";
 
-const modeDesignKeyboard: Condition = {
-  type: "device_if",
-  identifiers: [{ vendor_id: 222 }],
-};
-
 export const rules: KarabinerRule[] = [
-  {
-    description: "Switch left option -> cmd, and left cmd to left option",
-    manipulators: [
-      {
-        type: "basic",
-        from: {
-          key_code: "left_option",
-          modifiers: { optional: ["any"] },
-        },
-        to: [{ key_code: "left_command" }],
-        conditions: [modeDesignKeyboard],
-      },
-      {
-        type: "basic",
-        from: {
-          key_code: "left_command",
-          modifiers: { optional: ["any"] },
-        },
-        to: [{ key_code: "left_option" }],
-        conditions: [modeDesignKeyboard],
-      },
-      {
-        type: "basic",
-        from: {
-          key_code: "escape",
-          modifiers: { optional: ["any"] },
-        },
-        to: [{ key_code: "grave_accent_and_tilde" }],
-        conditions: [modeDesignKeyboard],
-      },
-      {
-        type: "basic",
-        from: {
-          key_code: "right_option",
-          modifiers: { optional: ["any"] },
-        },
-        to: [{ key_code: "right_command" }],
-        conditions: [modeDesignKeyboard],
-      },
-    ],
-  },
-
   ...hyper({
     spacebar: open(
       "raycast://extensions/stellate/mxstbr-commands/create-notion-todo",

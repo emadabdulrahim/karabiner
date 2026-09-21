@@ -4,10 +4,10 @@ import { rules } from "../rules.js";
 import { apps, hyper, inputSource, key, layer } from "../utils.js";
 
 test("the complete keymap keeps its structural invariants", () => {
-  assert.equal(rules.length, 17);
+  assert.equal(rules.length, 16);
   assert.equal(
     rules.reduce((count, rule) => count + rule.manipulators.length, 0),
-    73,
+    69,
   );
   assert.ok(
     rules.every((rule) =>
