@@ -104,7 +104,10 @@ export const rules: KarabinerRule[] = [
       l: open("raycast://extensions/thomas/color-picker/pick-color"),
       c: open("raycast://extensions/raycast/raycast/open-camera"),
       p: open("raycast://extensions/raycast/raycast/confetti"),
-      i: open("raycast-x://extensions/raycast/ai/ai-chat"),
+      // Let AI Chat manage focus without also activating Raycast's main window.
+      i: open(
+        "-g 'raycast-x://extensions/raycast/ai/ai-chat?launchType=background'",
+      ),
     }),
   }),
 ];

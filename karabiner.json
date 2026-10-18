@@ -2410,8 +2410,8 @@
                                 ]
                             },
                             {
-                                "description": "Open raycast-x://extensions/raycast/ai/ai-chat",
-                                "to": [{ "shell_command": "open raycast-x://extensions/raycast/ai/ai-chat" }],
+                                "description": "Open -g 'raycast-x://extensions/raycast/ai/ai-chat?launchType=background'",
+                                "to": [{ "shell_command": "open -g 'raycast-x://extensions/raycast/ai/ai-chat?launchType=background'" }],
                                 "type": "basic",
                                 "from": {
                                     "key_code": "i",
