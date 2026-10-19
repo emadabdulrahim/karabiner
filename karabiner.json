@@ -2426,6 +2426,20 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        "description": "option+v: Open -g raycast://extensions/raycast/dictation/dictate",
+                        "manipulators": [
+                            {
+                                "description": "Open -g raycast://extensions/raycast/dictation/dictate",
+                                "to": [{ "shell_command": "open -g raycast://extensions/raycast/dictation/dictate" }],
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": { "mandatory": ["option"] }
+                                }
+                            }
+                        ]
                     }
                 ]
             },

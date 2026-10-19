@@ -112,6 +112,31 @@ export function key(
   };
 }
 
+/**
+ * Binds a plain modifier chord outside Hyper. Karabiner sees keys below macOS
+ * Secure Input, so these keep working when another app leaks it, unlike
+ * Raycast's own hotkeys.
+ */
+export function shortcut(
+  modifiers: Modifier[],
+  keyCode: KeyCode,
+  command: LayerCommand,
+): KarabinerRule {
+  const { hint: _hint, ...karabinerCommand } = command;
+  const description = `${modifiers.join("+")}+${keyCode}: ${command.description ?? "shortcut"}`;
+
+  return {
+    description,
+    manipulators: [
+      {
+        ...karabinerCommand,
+        type: "basic",
+        from: { key_code: keyCode, modifiers: { mandatory: modifiers } },
+      },
+    ],
+  };
+}
+
 /** Uses Raycast's built-in window management extension. */
 export function window(position: string): LayerCommand {
   return {

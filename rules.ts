@@ -1,5 +1,14 @@
 import type { KarabinerRule } from "./types.js";
-import { apps, hyper, inputSource, key, layer, open, window } from "./utils.js";
+import {
+  apps,
+  hyper,
+  inputSource,
+  key,
+  layer,
+  open,
+  shortcut,
+  window,
+} from "./utils.js";
 
 export const rules: KarabinerRule[] = [
   ...hyper({
@@ -110,4 +119,10 @@ export const rules: KarabinerRule[] = [
       ),
     }),
   }),
+
+  shortcut(
+    ["option"],
+    "v",
+    open("-g raycast://extensions/raycast/dictation/dictate"),
+  ),
 ];

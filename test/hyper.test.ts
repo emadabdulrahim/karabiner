@@ -1,13 +1,21 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { rules } from "../rules.js";
-import { apps, hyper, inputSource, key, layer } from "../utils.js";
+import {
+  apps,
+  hyper,
+  inputSource,
+  key,
+  layer,
+  open,
+  shortcut,
+} from "../utils.js";
 
 test("the complete keymap keeps its structural invariants", () => {
-  assert.equal(rules.length, 16);
+  assert.equal(rules.length, 17);
   assert.equal(
     rules.reduce((count, rule) => count + rule.manipulators.length, 0),
-    69,
+    70,
   );
   assert.ok(
     rules.every((rule) =>
@@ -118,5 +126,18 @@ test("all camera actions use the current deeplink", () => {
   assert.deepEqual(cameraCommands, [
     "open raycast://extensions/raycast/raycast/open-camera",
     "open raycast://extensions/raycast/raycast/open-camera",
+  ]);
+});
+
+test("shortcut fires on its exact chord without depending on Hyper", () => {
+  const rule = shortcut(["option"], "v", open("raycast://example"));
+
+  assert.deepEqual(rule.manipulators, [
+    {
+      description: "Open raycast://example",
+      type: "basic",
+      from: { key_code: "v", modifiers: { mandatory: ["option"] } },
+      to: [{ shell_command: "open raycast://example" }],
+    },
   ]);
 });
