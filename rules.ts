@@ -38,7 +38,7 @@ export const rules: KarabinerRule[] = [
         v: "Visual Studio Code",
         s: "Slack",
         n: "Notion",
-        t: "Ghostty",
+        t: "Rex Beta",
         z: "zoom.us",
         m: "Messages",
         f: "Finder",
